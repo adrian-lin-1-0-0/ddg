@@ -33,10 +33,13 @@ func usage() {
 }
 
 func init() {
-	flag.StringVar(&q, "q", "go", "query")
+	flag.StringVar(&q, "q", "", "query")
 	flag.Usage = usage
 	flag.Parse()
-
+	if q == "" {
+		usage()
+		os.Exit(0)
+	}
 }
 func checkErr(err error) {
 	if err != nil {
